@@ -1,33 +1,32 @@
-class Solution {
-    public int myAtoi(String s) {
-        s = s.trim();
-        if (s.isEmpty()) {
-            return 0;
-        }
-        
-        int index = 0;
-        int sign = 1;
-        long result = 0;
-        
-        if (s.charAt(index) == '-') {
-            sign = -1;
-            index++;
-        } else if (s.charAt(index) == '+') {
-            index++;
-        }
-        
-        while (index < s.length() && Character.isDigit(s.charAt(index))) {
-            result = result * 10 + (s.charAt(index) - '0');
-            index++;
-            
-            if (result * sign > Integer.MAX_VALUE) {
-                return Integer.MAX_VALUE;
+class LTCode003 {
+    public int reverse(int x) {
+        int result = 0;
+        while (x != 0) {
+            int digit = x % 10;
+            x /= 10;
+
+            if (result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE / 10 && digit > 7)) {
+                return 0; 
             }
-            if (result * sign < Integer.MIN_VALUE) {
-                return Integer.MIN_VALUE;
+            if (result < Integer.MIN_VALUE / 10 || (result == Integer.MIN_VALUE / 10 && digit < -8)) {
+                return 0;
             }
+            result = result * 10 + digit;
         }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        LTCode003 solution = new LTCode003();
         
-        return (int) (result * sign);
+        int x1 = 123;
+        int x2 = -123;
+        int x3 = 120;
+        int x4 = 0;
+        
+        System.out.println("Reversed x1: " + solution.reverse(x1)); // Expected: 321
+        System.out.println("Reversed x2: " + solution.reverse(x2)); // Expected: -321
+        System.out.println("Reversed x3: " + solution.reverse(x3)); // Expected: 21
+        System.out.println("Reversed x4: " + solution.reverse(x4)); // Expected: 0
     }
 }
