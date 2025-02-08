@@ -1,5 +1,3 @@
-// Java code for linearly searching x in arr[]. 
-
 class LinearSearch {
     public int search(int arr[], int N, int x)
         {
@@ -11,13 +9,11 @@ class LinearSearch {
         }
     }
     public class Demo072 {
-        // Driver code
         public static void main(String args[])
         {
             int arr[] = { 2, 3, 4, 10, 40 };
             int x = 10;
             LinearSearch obj = new LinearSearch();
-            // Function call
             int result = obj.search(arr, arr.length, x);
         if (result == -1)
             System.out.print(
